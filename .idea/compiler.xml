@@ -11,8 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Uniq" target="1.5" />
-      <module name="Uniq1" target="1.5" />
+      <module name="Uniq" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
