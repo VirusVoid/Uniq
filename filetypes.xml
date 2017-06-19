@@ -1,11 +1,22 @@
 <application>
   <component name="FileTypeManager" version="17">
     <extensionMap>
-      <mapping pattern="Polynom" type="PLAIN_TEXT" />
+      <mapping pattern="actualOut3" type="PLAIN_TEXT" />
+      <mapping pattern="actualOut4" type="PLAIN_TEXT" />
       <mapping pattern="input5" type="PLAIN_TEXT" />
-      <mapping pattern="out5" type="PLAIN_TEXT" />
-      <mapping pattern="actualOut5" type="PLAIN_TEXT" />
+      <mapping pattern="input4" type="PLAIN_TEXT" />
+      <mapping pattern="input3" type="PLAIN_TEXT" />
+      <mapping pattern="input2" type="PLAIN_TEXT" />
+      <mapping pattern="input1" type="PLAIN_TEXT" />
       <mapping pattern="actualOut1" type="PLAIN_TEXT" />
+      <mapping pattern="out5" type="PLAIN_TEXT" />
+      <mapping pattern="out4" type="PLAIN_TEXT" />
+      <mapping pattern="out3" type="PLAIN_TEXT" />
+      <mapping pattern="out2" type="PLAIN_TEXT" />
+      <mapping pattern="out1" type="PLAIN_TEXT" />
+      <mapping pattern="actualOut5" type="PLAIN_TEXT" />
+      <mapping pattern="Polynom" type="PLAIN_TEXT" />
+      <mapping pattern="actualOut2" type="PLAIN_TEXT" />
       <mapping ext="adoc" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
