@@ -2,6 +2,9 @@
   <component name="FileTypeManager" version="17">
     <extensionMap>
       <mapping pattern="Polynom" type="PLAIN_TEXT" />
+      <mapping pattern="input5" type="PLAIN_TEXT" />
+      <mapping pattern="out5" type="PLAIN_TEXT" />
+      <mapping pattern="actualOut5" type="PLAIN_TEXT" />
       <mapping ext="adoc" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
