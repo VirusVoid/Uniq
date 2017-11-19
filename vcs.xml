@@ -10,6 +10,10 @@
           <option name="url" value="https://github.com/VirusVoid/Snake-game.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/VirusVoid/JavaKotlinASD.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\aleks\IdeaProjects" />
