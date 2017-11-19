@@ -35,12 +35,10 @@ public class BinaryTree<T extends Comparable<T>> extends AbstractSet<T> implemen
         Node<T> newNode = new Node<>(t);
         if (closest == null) {
             root = newNode;
-        }
-        else if (comparison < 0) {
+        } else if (comparison < 0) {
             assert closest.left == null;
             closest.left = newNode;
-        }
-        else {
+        } else {
             assert closest.right == null;
             closest.right = newNode;
         }
@@ -61,7 +59,52 @@ public class BinaryTree<T extends Comparable<T>> extends AbstractSet<T> implemen
 
     @Override
     public boolean remove(Object o) {
-        throw new UnsupportedOperationException();
+        return findNodeToRemove(root, root, (T) o);
+    }
+
+    private boolean findNodeToRemove(Node<T> node, Node<T> parent, T key) {
+        if (node == null)
+            return false;
+        if (key.compareTo(node.value) != 0) {
+            parent = node;
+        } else {
+            deleteNode(parent, node);
+            size--;
+            return true;
+        }
+        if (key.compareTo(node.value) < 0)
+            return findNodeToRemove(node.left, parent, key);
+        else return findNodeToRemove(node.right, parent, key);
+    }
+
+    private void deleteNode(Node<T> parent, Node<T> node) {
+        int difference = parent.value.compareTo(node.value);
+        if (node.right != null && node.left != null) {
+            Node<T> min = node.right;
+            Node<T> minParent = node;
+            while (min.left != null) {
+                minParent = min;
+                min = minParent.left;
+            }
+            min.left = node.left;
+            if (min != node.right) min.right = node.right;
+            minParent.left = null;
+            if (parent != null) {
+                if (node == parent.left) parent.left = min;
+                else parent.right = min;
+            } else {
+                root = min;
+            }
+        }
+        if (node.left != null && node.right == null) {
+            if (difference > 0) parent.left = node.left;
+            else if (difference < 0) parent.right = node.left;
+            else root = node.left;
+        } else {
+            if (difference > 0) parent.left = node.right;
+            else if (difference < 0) parent.right = node.right;
+            else root = node.right;
+        }
     }
 
     @Override
@@ -81,12 +124,10 @@ public class BinaryTree<T extends Comparable<T>> extends AbstractSet<T> implemen
         int comparison = value.compareTo(start.value);
         if (comparison == 0) {
             return start;
-        }
-        else if (comparison < 0) {
+        } else if (comparison < 0) {
             if (start.left == null) return start;
             return find(start.left, value);
-        }
-        else {
+        } else {
             if (start.right == null) return start;
             return find(start.right, value);
         }
@@ -96,7 +137,8 @@ public class BinaryTree<T extends Comparable<T>> extends AbstractSet<T> implemen
 
         private Node<T> current = null;
 
-        private BinaryTreeIterator() {}
+        private BinaryTreeIterator() {
+        }
 
         private Node<T> findNext() {
             throw new UnsupportedOperationException();
