@@ -1,14 +1,10 @@
-package lesson3;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.sun.istack.internal.NotNull;
+import com.sun.istack.internal.Nullable;
 
 import java.util.*;
 
-// Attention: comparable supported but comparator is not
 @SuppressWarnings("WeakerAccess")
 public class BinaryTree<T extends Comparable<T>> extends AbstractSet<T> implements SortedSet<T> {
-
     private static class Node<T> {
         final T value;
 
@@ -62,48 +58,38 @@ public class BinaryTree<T extends Comparable<T>> extends AbstractSet<T> implemen
         return findNodeToRemove(root, root, (T) o);
     }
 
-    private boolean findNodeToRemove(Node<T> node, Node<T> parent, T key) {
-        if (node == null)
+    private boolean findNodeToRemove(Node<T> t, Node<T> parent, T key) {
+        if (t == null)
             return false;
-        if (key.compareTo(node.value) != 0) {
-            parent = node;
+        if (key.compareTo(t.value) != 0) {
+            parent = t;
         } else {
-            deleteNode(parent, node);
+            deleteNode(parent, t);
             size--;
             return true;
         }
-        if (key.compareTo(node.value) < 0)
-            return findNodeToRemove(node.left, parent, key);
-        else return findNodeToRemove(node.right, parent, key);
+        if (key.compareTo(t.value) < 0)
+            return findNodeToRemove(t.left, parent, key);
+        else return findNodeToRemove(t.right, parent, key);
     }
 
-    private void deleteNode(Node<T> parent, Node<T> node) {
-        int difference = parent.value.compareTo(node.value);
-        if (node.right != null && node.left != null) {
-            Node<T> min = node.right;
-            Node<T> minParent = node;
-            while (min.left != null) {
-                minParent = min;
-                min = minParent.left;
-            }
-            min.left = node.left;
-            if (min != node.right) min.right = node.right;
-            minParent.left = null;
-            if (parent != null) {
-                if (node == parent.left) parent.left = min;
-                else parent.right = min;
-            } else {
-                root = min;
-            }
+    private void deleteNode(Node<T> parent, Node<T> t) {
+        int difference = parent.value.compareTo(t.value);
+        if (t.right != null && t.left != null) {
+            Node<T> temp = t.right;
+            while (temp.left != null) temp = temp.left;
+            temp.left = t.left;
+            if (difference < 0) temp.left = t.left;
+            else temp.left = t.left;
         }
-        if (node.left != null && node.right == null) {
-            if (difference > 0) parent.left = node.left;
-            else if (difference < 0) parent.right = node.left;
-            else root = node.left;
+        if (t.left != null && t.right == null) {
+            if (difference > 0) parent.left = t.left;
+            else if (difference < 0) parent.right = t.left;
+            else root = t.left;
         } else {
-            if (difference > 0) parent.left = node.right;
-            else if (difference < 0) parent.right = node.right;
-            else root = node.right;
+            if (difference > 0) parent.left = t.right;
+            else if (difference < 0) parent.right = t.right;
+            else root = t.right;
         }
     }
 
@@ -160,6 +146,7 @@ public class BinaryTree<T extends Comparable<T>> extends AbstractSet<T> implemen
         public void remove() {
             throw new UnsupportedOperationException();
         }
+
     }
 
     @NotNull
@@ -218,3 +205,4 @@ public class BinaryTree<T extends Comparable<T>> extends AbstractSet<T> implemen
         return current.value;
     }
 }
+
